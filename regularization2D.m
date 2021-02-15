@@ -64,11 +64,17 @@ function [grid,u,data_valid] = regularization2D (data, box, N, lambda1, lambda2)
   %% generate the sparse interpolation matrix
   M = length (x);
   x_ind = floor((x-box(1,1))/dx);
+<<<<<<< HEAD
   %% xi = mod(x,dx)/dx;
   xi = (x-box(1,1)-x_ind*dx)/dx;
   y_ind = floor((y-box(2,1))/dy);
   %%nu = mod(y,dy)/dy;
   nu = (y-box(2,1)-y_ind*dy)/dy;
+=======
+  xi = mod(x,dx)/dx;
+  y_ind = floor((y-box(2,1))/dy);
+  nu = mod(y,dy)/dy;
+>>>>>>> dda69c84a5a8e72bb50231a827c081dd12a44da8
   row = ones(4,1)*[1:M]; 
   index_base = N(2)*x_ind+y_ind+1;
   index = index_base + [0,N(2),1,N(2)+1]; index = index';
@@ -82,6 +88,7 @@ function [grid,u,data_valid] = regularization2D (data, box, N, lambda1, lambda2)
   Wx = ones(N(2),1); Wx(1) = 1/2; Wx(N(2)) = 1/2;
   Wx = kron(speye(N(1)-1),diag(Wx))*dx*dy;
 %%% derivative with respect to y
+<<<<<<< HEAD
  
   Wy = ones(N(1),1); Wy(1) = 1/2; Wy(N(1)) = 1/2;
   Wy = kron(diag(Wy),speye(N(2)-1))*dx*dy;
@@ -89,6 +96,12 @@ function [grid,u,data_valid] = regularization2D (data, box, N, lambda1, lambda2)
     Dy = kron(speye(N(1)),spdiags(ones(N(2),1)*[-1 1],[0 1],N(2)-1,N(2))/dy);
     mat += lambda1*(Dx'*Wx*Dx + Dy'*Wy*Dy);
   endif
+=======
+  Dy = kron(speye(N(1)),spdiags(ones(N(2),1)*[-1 1],[0 1],N(2)-1,N(2))/dy);
+  Wy = ones(N(1),1); Wy(1) = 1/2; Wy(N(1)) = 1/2;
+  Wy = kron(diag(Wy),speye(N(2)-1))*dx*dy;
+  mat += lambda1*(Dx'*Wx*Dx + Dy'*Wy*Dy);
+>>>>>>> dda69c84a5a8e72bb50231a827c081dd12a44da8
 
 %%% second derivative with respect to x
   Dxx = spdiags(ones(N(1),1)*[1 -1 -1 1],[-1 0 1 2],N(1)-1,N(1));
@@ -140,6 +153,7 @@ endfunction
 %! hold on
 %! plot3(data(:,1),data(:,2),data(:,3),'*b','Markersize',2)
 %! hold off
+<<<<<<< HEAD
 
 %!test
 %! data = [0,0,0;1,2,3;2,0,2;0,2,2];  % data on z = x+y
@@ -159,3 +173,5 @@ endfunction
 %!  -1.635243922246946e-02
 %!  -3.356775648311422e-02];
 %! assert(norm(value_at_data-u_valid(:,3)),0,1e-12)
+=======
+>>>>>>> dda69c84a5a8e72bb50231a827c081dd12a44da8

@@ -159,6 +159,7 @@ endfunction
 %! plot(grid,u,'b',x,y,'*r')
 %! legend('spline','data')
 %! xlabel('x'); ylabel('solution')
+<<<<<<< HEAD
 
 
 %!test
@@ -173,3 +174,5 @@ endfunction
 %! [grid,u] = regularization([x;x.^2]',[-2,2],20,F1,F2);
 %! assert(u(11),7.330959483903200e-03,1e-8)
 
+=======
+>>>>>>> dda69c84a5a8e72bb50231a827c081dd12a44da8
