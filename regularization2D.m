@@ -27,20 +27,20 @@
 ##
 ## Parameters:
 ## @itemize
-## @item @var{data} is a M*3 matrix with the (x,y) values in the first two columns and the y values in the third column.@*
+## @item @var{data} is a M*3 matrix with the (x,y) values in the first two columns and the z values in the third column.@*
 ## Only data points strictly inside the @var{box} are used
 ## @item @var{box} = [x0,x1;y0,y1] is the rectangle x0<x<x1 and y0<y<y1 on which the regularization is applied.
 ## @item @var{N} = [N1,N2] determines the number of subintervals of equal length. @var{grid} will consist of (@var{N1+1})x(@var{N2+1}) grid points.
 ## @item @var{lambda1} >= 0 is the value of the first regularization parameter
-## @item @var{lambda2} > 0 is the value of the secondregularization parameter
+## @item @var{lambda2} > 0 is the value of the second regularization parameter
 ## @end itemize
 ##
 ## Return values:
 ## @itemize
 ## @item @var{grid} is the grid on which @var{u} is evaluated. It consists of
-## (@var{N1+1})x(@var{N2}+1) equidistant points on the the rectangle @var{box}.
+## (@var{N1}+1)x(@var{N2}+1) equidistant points on the rectangle @var{box}.
 ## @item @var{u} are the values of the regularized approximation to the @var{data} evaluated on the @var{grid}.
-## @item @var{data_valid} returns the values data points used and the values of the regularized function at these points
+## @item @var{data_valid} returns the coordinates of the data points used and the values of the regularized function at these points
 ## @end itemize
 ## @seealso {tpaps, regularization, demo regularization2D}
 ## @end deftypefn
